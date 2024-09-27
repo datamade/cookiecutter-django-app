@@ -1,0 +1,9 @@
+{
+  "project_slug": "my-new-project",
+  "project_verbose_name": "My New Project",
+  "module_name": "{{ cookiecutter.project_slug.replace('-', '_') }}",
+  "python_version": 3.12,
+  "node_version": 22,
+  "install_wagtail": true,
+  "install_postgis": false
+}
