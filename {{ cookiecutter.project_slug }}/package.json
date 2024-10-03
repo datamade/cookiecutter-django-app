@@ -1,0 +1,8 @@
+{
+  "name": "{{ cookiecutter.module_name }}",
+  "version": "0.0.0",
+  "description": "JavaScript development setup for {{ cookiecutter.module_name }}",
+  "scripts": {
+    "develop": "sass --watch /app/{{ cookiecutter.module_name }}/static/scss/custom.scss:/app/{{ cookiecutter.module_name }}/static/css/bootstrap.custom.css"
+  }
+}
