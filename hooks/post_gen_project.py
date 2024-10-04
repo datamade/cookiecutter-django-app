@@ -8,7 +8,7 @@ from pip_chill import chill
 
 logger = logging.getLogger(__name__)
 
-def install_javascript_dependencies() -> None:
+def freeze_javascript_dependencies() -> None:
 	print("Installing JavaScript dependencies")
 	with open(Path("jsDependencies.txt"), "r") as deps:
 		subprocess.run(["xargs", "npm", "i"], stdin=deps, stdout=sys.stdout, check=True)
@@ -24,6 +24,10 @@ def freeze_python_dependencies() -> None:
 			if not p.get_name_without_version() in ignored_packages
 		)
 
+def create_dotenv() -> None:
+	subprocess.run(["cp", ".env.example", ".env"], stdout=sys.stdout, stderr=sys.stderr, check=True)
+
 if __name__ == "__main__":
-	install_javascript_dependencies()
+	freeze_javascript_dependencies()
 	freeze_python_dependencies()
+	create_dotenv()

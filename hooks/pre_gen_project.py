@@ -1,5 +1,4 @@
 import subprocess
-import sys
 
 def initialize_project(
 	dest: str = "{{ cookiecutter.project_slug }}",
