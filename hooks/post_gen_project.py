@@ -1,29 +1,29 @@
-import sys
+import logging
+from pathlib import Path
 import subprocess
+import sys
+
+from pip_chill import chill
 
 
-def initialize_project(
-	dest: str = "{{ cookiecutter.project_slug }}",
-	project_name: str = "{{ cookiecutter.module_name }}",
-	wagtail: bool = {{ cookiecutter.install_wagtail }} == True,
-) -> None:
-	if wagtail:
-		framework = "wagtail"
-		gen_command = f"wagtail start {project_name} ."
-	else:
-		framework = "django"
-		gen_command = f"django-admin startproject {project_name} ."
-
-	subprocess.run(["pip", "install", framework])
-	subprocess.run(gen_command.split(), capture_output=True, check=True)
+logger = logging.getLogger(__name__)
 
 def install_javascript_dependencies() -> None:
-	subprocess.run(["xargs", "npm", "i", "<", "jsDependencies.txt"])
+	print("Installing JavaScript dependencies")
+	with open(Path("jsDependencies.txt"), "r") as deps:
+		subprocess.run(["xargs", "npm", "i"], stdin=deps, stdout=sys.stdout, check=True)
 
 def freeze_python_dependencies() -> None:
-	subprocess.run(["pip", "freeze", ">", "requirements.txt"])
+	print("Freezing Python dependencies")
+
+	with open(Path("requirements.txt"), "w") as reqs:
+		ignored_packages = {"cookiecutter",}
+		installed_packages, _ = chill(no_chill=True)
+		reqs.writelines(
+			f"{p}\n" for p in installed_packages
+			if not p.get_name_without_version() in ignored_packages
+		)
 
 if __name__ == "__main__":
-	initialize_project()
 	install_javascript_dependencies()
 	freeze_python_dependencies()
