@@ -1,0 +1,18 @@
+{% raw %}{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body %}
+  <div class="container py-4">
+    <h1>{{page.title}}</h1>
+    {% for block in page.body %}
+      <div class="row pb-5">
+        <div class="col">
+          {% include {% endraw %}'{{ cookiecutter.module_name }}/partials/stream_field.html'{% raw %} %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
+
+{% wagtailuserbar %}
+{% endraw %}

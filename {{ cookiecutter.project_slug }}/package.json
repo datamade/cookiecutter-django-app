@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "JavaScript development setup for {{ cookiecutter.module_name }}",
   "scripts": {
-    "develop": "sass --watch /app/{{ cookiecutter.module_name }}/static/scss/custom.scss:/app/{{ cookiecutter.module_name }}/static/css/bootstrap.custom.css"
+    "build": "webpack --mode=production",
+    "serve": "webpack-dev-server --config /app/webpack.config.js --mode=development --host 0.0.0.0 --hot --open"
   }
 }

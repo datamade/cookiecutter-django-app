@@ -1,0 +1,31 @@
+{% raw %}{% extends "base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block title %}{{ page.title }}{% endblock %}
+
+{% block body %}
+  {% for block in page.body %}
+    <!-- hero for the first block -->
+    {% if forloop.first %}
+      <div class="row main-idea no-gutters banner-image d-flex align-items-center justify-content-center mb-5">
+        <div class="col-sm-9">
+          <div class="banner-text-container">
+            {% include '{% endraw %}{{ cookiecutter.module_name }}{% raw %}/partials/stream_field.html' %}
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid">
+    {% else %}
+      <div class="row">
+        <div class="col col-md-10 offset-md-1">
+          {% include '{% endraw %}{{ cookiecutter.module_name }}{% raw %}/partials/stream_field.html' %}
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+  </div> <!-- end container-fluid -->
+{% endblock %}
+
+{% wagtailuserbar %}
+{% endraw %}

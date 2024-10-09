@@ -9,7 +9,7 @@ RUN npm install
 
 COPY . /app
 
-# Rebuild static files
+# Bake static files into the image
 RUN npm run build
 
 ENV DJANGO_SECRET_KEY 'foobar'

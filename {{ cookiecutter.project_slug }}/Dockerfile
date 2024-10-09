@@ -1,6 +1,7 @@
 FROM node:{{ cookiecutter.node_version }}-slim AS node
 
 COPY ./package.json package.json
+# COPY ./package-lock.json package.json
 RUN npm install
 
 FROM python:{{ cookiecutter.python_version }} AS app
@@ -27,9 +28,3 @@ COPY --from=node /usr/local/lib/node_modules /usr/local/lib/node_modules
 COPY --from=node node_modules /app/node_modules
 
 COPY . /app
-
-# Bake static files into the image
-RUN npm run build
-
-ENV DJANGO_SECRET_KEY 'foobar'
-RUN python manage.py collectstatic --noinput

@@ -1,0 +1,7 @@
+{% raw %}
+
+<li class="nav-item">
+  <a class="nav-link" href="/">Home</a>
+</li>
+{% for item in menu.menu %} {% include '{% endraw %}{{ cookiecutter.module_name }}{% raw %}/partials/nav_item.html' with
+  item=item %} {% endfor %}{% endraw %}

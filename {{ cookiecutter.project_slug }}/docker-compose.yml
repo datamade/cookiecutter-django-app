@@ -42,7 +42,7 @@ services:
 
   postgres:
     container_name: {{ cookiecutter.module_name }}-postgres
-    image: {% if cookiecutter.install_postgis == 'True' %}postgis/postgis{% else %}postgres{% endif %}
+    image: {% if cookiecutter.install_postgis %}postgis/postgis{% else %}postgres{% endif %}
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
