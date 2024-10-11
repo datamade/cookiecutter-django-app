@@ -8,3 +8,7 @@ See: https://getbootstrap.com/docs/5.3/customize/sass/#importing
 @import "/app/node_modules/bootstrap/scss/bootstrap";
 
 // Then add additional custom code here
+.row {
+	margin-top: 1.5rem;
+	margin-bottom: 1.5rem;
+}

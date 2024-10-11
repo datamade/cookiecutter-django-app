@@ -5,7 +5,8 @@ const BundleTracker = require("webpack-bundle-tracker")
 const config = {
   context: __dirname,
   entry: {
-    bootstrap: "./{{cookiecutter.module_name}}/static/js/bootstrap.js",
+    bootstrap: "./{{cookiecutter.module_name}}/static/js/bootstrap.js",{% if cookiecutter.install_wagtail %}
+    react_block: "./{{ cookiecutter.module_name }}/static/js/react_block.js",{% endif %}
   },
   output: {
     path: path.resolve(__dirname, "assets/bundles/"),

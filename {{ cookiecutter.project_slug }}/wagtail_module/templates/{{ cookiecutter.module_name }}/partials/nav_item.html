@@ -1,13 +1,13 @@
-{% raw %}{% load static wagtailcore_tags %} {%
-if not item.children %}
-<li class="nav-item">
-  <a
-    class="nav-link"
-    href="{% slugurl item.nav_item.page.slug %}"
-  >
-    {% pageurl item.nav_item.page.slug %}
-  </a>
-</li>
+{% raw %}{% load wagtailcore_tags %}
+
+{% if not menuitem.get_children %}
+  <li class="nav-item">
+    <a
+      class="nav-link"
+      href="{% slugurl menuitem.slug %}">
+      {{ menuitem.title }}
+    </a>
+  </li>
 {% else %}
   <li class="nav-item dropdown">
     <a
@@ -15,26 +15,20 @@ if not item.children %}
       href="#"
       id="navbarDropdown-{{ forloop.counter }}"
       role="button"
-      data-toggle="dropdown"
+      data-bs-toggle="dropdown"
       aria-haspopup="true"
       aria-expanded="false"
-    >{% pageurl item.nav_item.page.slug %}</a
-      >
-      <div
+    >{{ menuitem.title }}</a>
+      <ul
         class="dropdown-menu dropdown-menu-right"
-        aria-labelledby="navbarDropdown"
-      >
+        aria-labelledby="navbarDropdown-{{ forloop.counter }}">
         <a
           class="dropdown-item"
-          href="{% slugurl item.nav_item.page.slug %}"
-        >{% translate "Overview" %}</a
-          >
-          {% for child in item.children %}
-            <a class="dropdown-item" href="{% slugurl child.page.slug %}"
-            >{% pageurl child.page.slug %}</a
-              >
+          href="{% slugurl menuitem.slug %}"
+        >Overview</a>
+          {% for child in menuitem.get_children.live.in_menu %}
+            <a class="dropdown-item" href="{% slugurl child.slug %}">{{ child.title }}</a>
           {% endfor %}
-        </div>
+        </ul>
       </li>
-{% endif %}
-{% endraw %}
+{% endif %}{% endraw %}

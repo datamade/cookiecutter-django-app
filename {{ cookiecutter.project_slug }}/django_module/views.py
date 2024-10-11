@@ -3,10 +3,10 @@ import os
 from django.shortcuts import render
 from django.views.generic import TemplateView
 
-
+{% if not cookiecutter.install_wagtail %}
 class Home(TemplateView):
     template_name = "{{ cookiecutter.module_name }}/home_page.html"
-
+{% endif %}
 
 def robots_txt(request):
     return render(

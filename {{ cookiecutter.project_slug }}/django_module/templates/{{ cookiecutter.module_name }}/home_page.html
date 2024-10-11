@@ -1,21 +1,18 @@
 {% raw %}{% extends "base.html" %}
-{% load static %}
 
 {% block title %}Home{% endblock %}
 
 {% block body %}
-<div class="container-fluid mb-1 jumbotron">
+<div class="container-fluid">
   <div class="row">
     <div class="col-sm-10 offset-sm-1">
-      <h1 class="mb-3">{% endraw %}{{cookiecutter.project_verbose_name}}{% raw %}</h1>
+      <h1>Welcome to the website!</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-10 offset-sm-1">
+      One day, it will contain really cool content. :-)
     </div>
   </div>
 </div>
-<div class="container">
-  <div class="row pt-5 pb-4 text-center">
-    <p>Welcome to your app!</p>
-  </div>
-</div>
-{% endblock %}
-
-{% endraw %}
+{% endblock %}{% endraw %}

@@ -10,7 +10,7 @@
     />
 
     <title>
-      Home | {% endraw %}{{ cookiecutter.project_verbose_name }}
+      Home | {% endraw %}{{ cookiecutter.project_verbose_name }}{% raw %}
     </title>
 
     <meta content="TK" name="description" />
@@ -18,29 +18,28 @@
       content="{{ cookiecutter.project_verbose_name }}"
       name="author"
     />
-    <meta property="og:site_name" content="{{ cookiecutter.project_verbose_name }}" />
+    <meta property="og:site_name" content="{% endraw %}{{ cookiecutter.project_verbose_name }}{% raw %}" />
 
     <!-- Facebook metadata -->
     <meta property="og:type" content="website" />
     <meta
       property="og:title"
-      content="Home | {{ cookiecutter.project_verbose_name }}"
+      content="Home | {% endraw %}{{ cookiecutter.project_verbose_name }}{% raw %}"
     />
     <meta property="og:description" content="TK" />
     <meta property="og:url" content="TK" />
 
     <!-- Twitter metadata -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="{{ cookiecutter.project_verbose_name }}" />
+    <meta name="twitter:site" content="{% endraw %}{{ cookiecutter.project_verbose_name }}{% raw %}" />
     <meta name="twitter:creator" content="TK" />
     <meta
       name="twitter:title"
-      content="Home | {{ cookiecutter.project_verbose_name }}"
+      content="Home | {% endraw %}{{ cookiecutter.project_verbose_name }}{% raw %}"
     />
     <meta name="twitter:url" content="TK" />
     <meta name="twitter:description" content="TK" />
 
-    {% raw %}
     <meta property="og:image" content="{% static 'images/' %}" />
     <meta name="twitter:image" content="{% static 'images/' %}" />
 
@@ -73,19 +72,18 @@
 
   <body>
     <nav
-      class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-between p-3"
+      class="navbar navbar-expand-lg bg-light"
     >
-      <div class="col-10 col-sm-6">
-        <a class="h2 text-dark m-2 row" href="/"
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/"
         >{% endraw %}{{ cookiecutter.project_verbose_name }}{% raw %}</a
           >
-        </div>
 
         <button
           class="navbar-toggler"
           type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent"
           aria-expanded="false"
           aria-label="Toggle navigation"
@@ -94,67 +92,80 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto">
+          <ul class="navbar-nav">
             {% include '{% endraw %}{{ cookiecutter.module_name }}{% raw %}/partials/nav.html' %}
           </ul>
         </div>
-      </nav>
+      </div>
+    </nav>
 
-      <div id="main-body">{% block body %}{% endblock %}</div>
+    <main>{% block body %}{% endblock %}</main>
 
-      <footer>
-        <div class="bg-dark p-4 container-fluid text-light">
-          <div class="row">
-            <!-- Site Name -->
-            <div class="col-md p-3">
-              <h1>
-                {% endraw %}{{ cookiecutter.project_verbose_name }}{% raw %}
-              </h1>
-            </div>
+    <footer class="bg-dark text-light">
+      <div class="container-fluid py-4">
+        <div class="row">
+          <!-- Site Name -->
+          <div class="col-md">
+            <p class="h4">
+              {% endraw %}{{ cookiecutter.project_verbose_name }}{% raw %}
+            </p>
           </div>
+        </div>
 
-          <hr class="mt-2 mb-3" style="border-color: gray" />
-          <div class="d-flex justify-content-between">
+        <hr class="py-2" style="border-color: gray" />
+        
+        <div class="row">
+          <div class="col">
             <p>
               Built by
               <a href="https://datamade.us" target="_blank" class="text-light"
               >DataMade</a
                 >
-              </p>
-            </div>
+            </p>
           </div>
-        </footer>
+        </div>
+      </div>
+    </footer>
 
-        <!-- Load external scripts -->
-        <script src="{% static 'js/lib/fontawesome.min.js' %}"></script>
+    <!-- Load external scripts -->
+    <script src="{% static 'js/lib/fontawesome.min.js' %}"></script>
 
-        <!-- Matomo -->
-        <script>
-          var _paq = (window._paq = window._paq || [])
-          /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-          _paq.push(["trackPageView"])
-          _paq.push(["enableLinkTracking"])
-          ;(function () {
-            var u = "https://datamade.matomo.cloud/"
-            _paq.push(["setTrackerUrl", u + "matomo.php"])
-            // replace ZZZ with your site ID
-            _paq.push(["setSiteId", "ZZZ"])
-            var d = document,
-            g = d.createElement("script"),
-            s = d.getElementsByTagName("script")[0]
-            g.async = true
-            g.src = "//cdn.matomo.cloud/datamade.matomo.cloud/matomo.js"
-            s.parentNode.insertBefore(g, s)
-          })()
-        </script>
-        <!-- End Matomo Code -->
+    <!-- Matomo -->
+    <script>
+      var _paq = (window._paq = window._paq || [])
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      _paq.push(["trackPageView"])
+      _paq.push(["enableLinkTracking"])
+      ;(function () {
+        var u = "https://datamade.matomo.cloud/"
+        _paq.push(["setTrackerUrl", u + "matomo.php"])
+        // replace ZZZ with your site ID
+        _paq.push(["setSiteId", "ZZZ"])
+        var d = document,
+        g = d.createElement("script"),
+        s = d.getElementsByTagName("script")[0]
+        g.async = true
+        g.src = "//cdn.matomo.cloud/datamade.matomo.cloud/matomo.js"
+        s.parentNode.insertBefore(g, s)
+      })()
+    </script>
+    <!-- End Matomo Code -->
 
-        <!-- Load Bootstrap styles and JavaScript -->
-        {% load render_bundle from webpack_loader %}
-        {% render_bundle 'bootstrap' js %}
+    <!-- Load Bootstrap styles and JavaScript -->
+    {% load render_bundle from webpack_loader %}
+    {% render_bundle 'bootstrap' js %}
 
-        <!-- Load extra external scripts -->
-        {% block extra_js %}{% endblock %}
-      </body>
-    </html>
+    <!-- Load extra external scripts -->
+    {% block extra_js %}{% endblock %}
+
     {% endraw %}
+    {% if cookiecutter.install_wagtail %}
+      {% raw %}
+      {% load wagtailuserbar %}
+      {% wagtailuserbar %}
+      {% endraw %}
+    {% endif %}
+    {% raw %}
+  </body>
+</html>
+{% endraw %}
