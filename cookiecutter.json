@@ -1,6 +1,6 @@
 {
   "project_slug": "my-new-project",
-  "project_verbose_name": "My New Project",
+  "project_verbose_name": "{{ cookiecutter.project_slug.replace('-', ' ')|title }}",
   "module_name": "{{ cookiecutter.project_slug.replace('-', '_') }}",
   "python_version": 3.12,
   "node_version": 22,
