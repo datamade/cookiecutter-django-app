@@ -1,5 +1,10 @@
-from python:slim
-MAINTAINER "DataMade <info@datamade.us>"
+FROM node:slim AS node
+
+FROM python:slim
+
+# Get NodeJS & npm
+COPY --from=node /usr/local/bin /usr/local/bin
+COPY --from=node /usr/local/lib/node_modules /usr/local/lib/node_modules
 
 RUN apt-get update && \
     apt-get upgrade -y && \

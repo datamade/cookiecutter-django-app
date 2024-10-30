@@ -1,7 +1,6 @@
 FROM node:{{ cookiecutter.node_version }}-slim AS node
 
 COPY ./package.json package.json
-# COPY ./package-lock.json package.json
 RUN npm install
 
 FROM python:{{ cookiecutter.python_version }} AS app
