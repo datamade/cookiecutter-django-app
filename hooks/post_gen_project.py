@@ -41,10 +41,13 @@ def freeze_python_dependencies() -> None:
             stdout=sys.stdout,
             check=True,
         )
+        extended_reqs.seek(0)
+        print(extended_reqs.readlines())
         ignored_packages = {
             "cookiecutter",
         }
         installed_packages, _ = chill(no_chill=True)
+        print(installed_packages)
         reqs.writelines(
             f"{p}\n"
             for p in installed_packages
