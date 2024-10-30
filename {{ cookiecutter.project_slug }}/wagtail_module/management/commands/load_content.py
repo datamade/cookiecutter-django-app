@@ -1,5 +1,3 @@
-# Based on the Wagtail demo:
-# https://github.com/wagtail/bakerydemo/blob/master/bakerydemo/base/management/commands/load_initial_data.py
 import os
 from pathlib import Path
 import json
@@ -23,10 +21,10 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument(
             "--content-type",
-            default="content",
+            default="content,images",
             type=lambda x: x.split(","),
             help="Comma-separated string of content types to load. Default: \
-                  content. Options: content, images.",
+                  content,images. Options: content, images.",
         )
         parser.add_argument(
             "--content-fixture",
@@ -108,4 +106,4 @@ class Command(BaseCommand):
                         )
                     )
 
-        self.stdout.write(self.style.SUCCESS("Copied all initial images!"))
+        self.stdout.write(self.style.SUCCESS("Initial images loaded!"))
