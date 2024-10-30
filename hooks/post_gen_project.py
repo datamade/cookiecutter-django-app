@@ -41,18 +41,33 @@ def freeze_python_dependencies() -> None:
             stdout=sys.stdout,
             check=True,
         )
-        extended_reqs.seek(0)
-        print(extended_reqs.readlines())
-        ignored_packages = {
-            "cookiecutter",
-        }
-        installed_packages, _ = chill(no_chill=True)
-        print(installed_packages)
-        reqs.writelines(
-            f"{p}\n"
-            for p in installed_packages
-            if not p.get_name_without_version() in ignored_packages
+        subprocess.run(
+            [
+                "pip",
+                "list",
+                "--not-required",
+                "--format",
+                "freeze",
+                "|",
+                "grep",
+                "-v",
+                "cookiecutter",
+            ],
+            stdout=reqs,
+            check=True,
         )
+    #        extended_reqs.seek(0)
+    #        print(extended_reqs.readlines())
+    #        ignored_packages = {
+    #            "cookiecutter",
+    #        }
+    #        installed_packages, _ = chill(no_chill=True)
+    #        print(installed_packages)
+    #        reqs.writelines(
+    #            f"{p}\n"
+    #            for p in installed_packages
+    #            if not p.get_name_without_version() in ignored_packages
+    #        )
 
     subprocess.run(["rm", "python_requirements.txt"], check=True)
 
