@@ -62,8 +62,8 @@ def copy_module_template(
     subprocess.run(
         [
             "cp",
-            "-r",
-            f"django_module/",
+            "-a",
+            "django_module/.",
             f"{project_name}/",
         ],
         check=True,
@@ -72,8 +72,8 @@ def copy_module_template(
         subprocess.run(
             [
                 "cp",
-                "-r",
-                f"wagtail_module/",
+                "-a",
+                "wagtail_module/.",
                 f"{project_name}/",
             ],
             check=True,
@@ -83,6 +83,7 @@ def copy_module_template(
 
 
 def create_dotenv() -> None:
+    print("Creating .env")
     subprocess.run(
         ["cp", ".env.example", ".env"], stdout=sys.stdout, stderr=sys.stderr, check=True
     )
