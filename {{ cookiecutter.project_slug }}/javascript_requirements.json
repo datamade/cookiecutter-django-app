@@ -30,6 +30,7 @@
         "postcss-loader",
         "sass",
         "sass-loader",
-        "style-loader"
+        "style-loader",
+        "prettier"
     ]
 }
