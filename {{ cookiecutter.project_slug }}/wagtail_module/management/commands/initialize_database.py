@@ -68,7 +68,9 @@ class Command(BaseCommand):
         root.add_child(instance=homepage)
         homepage.save_revision().publish()
 
-        site, _ = Site.objects.get_or_create(hostname="localhost", root_page=homepage)
+        site, _ = Site.objects.get_or_create(
+            hostname="localhost", root_page=homepage, is_default_site=True
+        )
 
         subpage = StaticPage(title="Example Page", show_in_menus=True)
 

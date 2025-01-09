@@ -224,3 +224,5 @@ WAGTAILEMBEDS_RESPONSIVE_HTML = True
 if DEBUG is False:
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
     SECURE_SSL_REDIRECT = True
+
+CSRF_TRUSTED_ORIGINS = ["https://*.herokuapp.com", "http://localhost:8000"]
