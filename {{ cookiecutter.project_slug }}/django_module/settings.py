@@ -225,4 +225,13 @@ if DEBUG is False:
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
     SECURE_SSL_REDIRECT = True
 
-CSRF_TRUSTED_ORIGINS = ["https://*.herokuapp.com", "http://localhost:8000"]
+# Derive allowed origins from configured hosts
+CSRF_TRUSTED_ORIGINS = []
+
+for host in ALLOWED_HOSTS:
+    if host.startswith("."):
+        origin = f"https://*{host}"
+    else:
+        origin = f"https://{host}"
+
+    CSRF_TRUSTED_ORIGINS.append(origin)
