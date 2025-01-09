@@ -57,7 +57,8 @@ class Command(BaseCommand):
                     {
                         "title": "React Block",
                         "description": RichText(
-                            "<p>This React block can be added, reordered, or removed in the CMS!</p>"
+                            "<p>This React block can be added,"
+                            + " reordered, or removed in the CMS!</p>"
                         ),
                     },
                 ),
@@ -98,7 +99,8 @@ class Command(BaseCommand):
                 (
                     "content",
                     RichText(
-                        "<p>You can customize content based on the model instance by editing the page template.</p>"
+                        "<p>You can customize content based on the model instance"
+                        + " by editing the page template.</p>"
                     ),
                 ),
             ]
