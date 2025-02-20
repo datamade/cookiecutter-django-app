@@ -79,7 +79,8 @@ class Command(BaseCommand):
                 (
                     "content",
                     RichText(
-                        "<p>This is an example subpage. It, too, will one day contain compelling content.</p>"
+                        "<p>This is an example subpage. "
+                        "It, too, will one day contain compelling content.</p>"
                     ),
                 ),
             ]

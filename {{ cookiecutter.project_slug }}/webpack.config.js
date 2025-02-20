@@ -37,7 +37,7 @@ const config = {
       module: /sass-loader/, // A RegExp
     },
     /warning from compiler/,
-    (warning) => true,
+    () => true,
   ],
   module: {
     rules: [
