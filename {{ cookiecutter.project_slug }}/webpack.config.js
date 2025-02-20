@@ -16,8 +16,8 @@ const config = {
   plugins: [
     new BundleTracker({
       path: __dirname,
-      filename: "webpack-stats.json"
-    })
+      filename: "webpack-stats.json",
+    }),
   ],
   devServer: {
     watchFiles: ["{{cookiecutter.module_name}}/static/**/*.js"],
@@ -46,7 +46,7 @@ const config = {
         exclude: /node_modules/,
         loader: "babel-loader",
         options: {
-          presets: ["@babel/preset-env", "@babel/preset-react"]
+          presets: ["@babel/preset-env", "@babel/preset-react"],
         },
       },
       {
@@ -66,25 +66,23 @@ const config = {
         test: /\.(scss)$/,
         use: [
           {
-            loader: 'style-loader'
+            loader: "style-loader"
           },
           {
-            loader: 'css-loader'
+            loader: "css-loader"
           },
           {
-            loader: 'postcss-loader',
+            loader: "postcss-loader",
             options: {
               postcssOptions: {
-                plugins: () => [
-                  require('autoprefixer')
-                ]
-              }
-            }
+                plugins: () => [require("autoprefixer")],
+              },
+            },
           },
           {
-            loader: 'sass-loader'
-          }
-        ]
+            loader: "sass-loader",
+          },
+        ],
       },
       {
         test: /\.(jpg|png|mp4)$/,

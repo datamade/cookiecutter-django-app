@@ -113,7 +113,9 @@ WSGI_APPLICATION = "{{ cookiecutter.module_name }}.wsgi.application"
 DATABASES = {}
 
 DATABASES["default"] = dj_database_url.parse(
-    os.getenv("DATABASE_URL", "postgis://postgres:postgres@postgres:5432/{{ cookiecutter.module_name }}"),
+    os.getenv(
+        "DATABASE_URL", "postgis://postgres:postgres@postgres:5432/{{ cookiecutter.module_name }}"
+    ),
     conn_max_age=600,
     ssl_require=True if os.getenv("POSTGRES_REQUIRE_SSL") else False,
     engine="django.contrib.gis.db.backends.postgis",

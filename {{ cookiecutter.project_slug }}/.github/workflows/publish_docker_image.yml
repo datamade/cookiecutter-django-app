@@ -16,7 +16,7 @@ jobs:
         uses: docker/login-action@v1
         with:
           registry: ghcr.io
-          username:  {% raw %}${{ github.actor }}{% endraw %}
+          username: {% raw %}${{ github.actor }}{% endraw %}
           password: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
 
       - name: Create tag from branch

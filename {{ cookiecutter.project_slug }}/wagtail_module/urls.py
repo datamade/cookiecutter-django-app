@@ -23,8 +23,8 @@ urlpatterns = urlpatterns + [
     #    path("pages/", include(wagtail_urls)),
 ]
 
-handler404 = '{{cookiecutter.module_name}}.views.page_not_found'
-handler500 = '{{cookiecutter.module_name}}.views.server_error'
+handler404 = "{{cookiecutter.module_name}}.views.page_not_found"
+handler500 = "{{cookiecutter.module_name}}.views.server_error"
 
 
 if settings.DEBUG:

@@ -79,93 +79,93 @@
         >{% endraw %}{{ cookiecutter.project_verbose_name }}{% raw %}</a
           >
 
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav">
-            {% include '{% endraw %}{{ cookiecutter.module_name }}{% raw %}/partials/nav.html' %}
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-    <main>{% block body %}{% endblock %}</main>
-
-    <footer class="bg-dark text-light">
-      <div class="container-fluid py-4">
-        <div class="row">
-          <!-- Site Name -->
-          <div class="col-md">
-            <p class="h4">
-              {% endraw %}{{ cookiecutter.project_verbose_name }}{% raw %}
-            </p>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+              {% include '{% endraw %}{{ cookiecutter.module_name }}{% raw %}/partials/nav.html' %}
+            </ul>
           </div>
         </div>
+      </nav>
 
-        <hr class="py-2" style="border-color: gray" />
-        
-        <div class="row">
-          <div class="col">
-            <p>
-              Built by
-              <a href="https://datamade.us" target="_blank" class="text-light"
-              >DataMade</a
-                >
-            </p>
+      <main>{% block body %}{% endblock %}</main>
+
+      <footer class="bg-dark text-light">
+        <div class="container-fluid py-4">
+          <div class="row">
+            <!-- Site Name -->
+            <div class="col-md">
+              <p class="h4">
+                {% endraw %}{{ cookiecutter.project_verbose_name }}{% raw %}
+              </p>
+            </div>
           </div>
-        </div>
-      </div>
-    </footer>
 
-    <!-- Load external scripts -->
-    <script src="{% static 'js/lib/fontawesome.min.js' %}"></script>
+          <hr class="py-2" style="border-color: gray" />
 
-    <!-- Matomo -->
-    <script>
-      var _paq = (window._paq = window._paq || [])
-      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-      _paq.push(["trackPageView"])
-      _paq.push(["enableLinkTracking"])
-      ;(function () {
-        var u = "https://datamade.matomo.cloud/"
-        _paq.push(["setTrackerUrl", u + "matomo.php"])
-        // replace ZZZ with your site ID
-        _paq.push(["setSiteId", "ZZZ"])
-        var d = document,
-        g = d.createElement("script"),
-        s = d.getElementsByTagName("script")[0]
-        g.async = true
-        g.src = "//cdn.matomo.cloud/datamade.matomo.cloud/matomo.js"
-        s.parentNode.insertBefore(g, s)
-      })()
-    </script>
-    <!-- End Matomo Code -->
+          <div class="row">
+            <div class="col">
+              <p>
+                Built by
+                <a href="https://datamade.us" target="_blank" class="text-light"
+                >DataMade</a
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+        </footer>
 
-    <!-- Load Bootstrap styles and JavaScript -->
-    {% load render_bundle from webpack_loader %}
-    {% render_bundle 'bootstrap' js %}
+        <!-- Load external scripts -->
+        <script src="{% static 'js/lib/fontawesome.min.js' %}"></script>
 
-    <!-- Load extra external scripts -->
-    {% block extra_js %}{% endblock %}
+        <!-- Matomo -->
+        <script>
+          var _paq = (window._paq = window._paq || [])
+          /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+          _paq.push(["trackPageView"])
+          _paq.push(["enableLinkTracking"])
+          ;(function () {
+            var u = "https://datamade.matomo.cloud/"
+            _paq.push(["setTrackerUrl", u + "matomo.php"])
+            // replace ZZZ with your site ID
+            _paq.push(["setSiteId", "ZZZ"])
+            var d = document,
+            g = d.createElement("script"),
+            s = d.getElementsByTagName("script")[0]
+            g.async = true
+            g.src = "//cdn.matomo.cloud/datamade.matomo.cloud/matomo.js"
+            s.parentNode.insertBefore(g, s)
+          })()
+        </script>
+        <!-- End Matomo Code -->
 
+        <!-- Load Bootstrap styles and JavaScript -->
+        {% load render_bundle from webpack_loader %}
+        {% render_bundle 'bootstrap' js %}
+
+        <!-- Load extra external scripts -->
+        {% block extra_js %}{% endblock %}
+
+        {% endraw %}
+        {% if cookiecutter.install_wagtail %}
+          {% raw %}
+          {% load wagtailuserbar %}
+          {% wagtailuserbar %}
+          {% endraw %}
+        {% endif %}
+        {% raw %}
+      </body>
+    </html>
     {% endraw %}
-    {% if cookiecutter.install_wagtail %}
-      {% raw %}
-      {% load wagtailuserbar %}
-      {% wagtailuserbar %}
-      {% endraw %}
-    {% endif %}
-    {% raw %}
-  </body>
-</html>
-{% endraw %}
