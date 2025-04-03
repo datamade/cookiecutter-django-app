@@ -80,9 +80,16 @@ def create_dotenv() -> None:
         ["cp", ".env.example", ".env"], stdout=sys.stdout, stderr=sys.stderr, check=True
     )
 
+def create_media_dir() -> None:
+    print("Creating media directory")
+    subprocess.run(
+        ["mkdir", "media"], stdout=sys.stdout, stderr=sys.stderr, check=True
+    )
+
 
 if __name__ == "__main__":
     freeze_javascript_dependencies()
     freeze_python_dependencies()
     copy_module_template()
     create_dotenv()
+    create_media_dir()
