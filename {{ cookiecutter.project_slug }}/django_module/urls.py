@@ -7,6 +7,7 @@ from {{cookiecutter.module_name}} import views
 urlpatterns = [
     path('', views.Home.as_view(), name='home'),
     path('admin/', admin.site.urls),
+    path('robots.txt/', views.robots_txt),
 ]
 
 handler404 = "{{cookiecutter.module_name}}.views.page_not_found"
