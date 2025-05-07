@@ -19,16 +19,16 @@
       aria-haspopup="true"
       aria-expanded="false"
     >{{ menuitem.title }}</a>
-      <ul
-        class="dropdown-menu dropdown-menu-right"
-        aria-labelledby="navbarDropdown-{{ forloop.counter }}">
-        <a
-          class="dropdown-item"
-          href="{% slugurl menuitem.slug %}"
-        >Overview</a>
-          {% for child in menuitem.get_children.live.in_menu %}
-            <a class="dropdown-item" href="{% slugurl child.slug %}">{{ child.title }}</a>
-          {% endfor %}
-        </ul>
-      </li>
+    <ul
+      class="dropdown-menu dropdown-menu-right"
+      aria-labelledby="navbarDropdown-{{ forloop.counter }}">
+      <a
+        class="dropdown-item"
+        href="{% slugurl menuitem.slug %}"
+      >Overview</a>
+      {% for child in menuitem.get_children.live.in_menu %}
+        <a class="dropdown-item" href="{% slugurl child.slug %}">{{ child.title }}</a>
+      {% endfor %}
+    </ul>
+  </li>
 {% endif %}{% endraw %}

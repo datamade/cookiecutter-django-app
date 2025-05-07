@@ -4,3 +4,5 @@ django-webpack-loader
 django-storages[s3]
 whitenoise
 sentry-sdk
+pytest
+gunicorn

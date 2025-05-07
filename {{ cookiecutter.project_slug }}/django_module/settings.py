@@ -29,6 +29,10 @@ DEBUG = False if os.getenv("DJANGO_DEBUG", True) == "False" else True
 # e.g. localhost,127.0.0.1,.herokuapp.com
 allowed_hosts = os.getenv("DJANGO_ALLOWED_HOSTS", [])
 ALLOWED_HOSTS = allowed_hosts.split(",") if allowed_hosts else []
+{% if cookiecutter.install_wagtail %}
+# Adding localhost by default allows for wagtail previews to work when editing pages
+ALLOWED_HOSTS.append("localhost")
+{% endif %}
 
 # Configure Sentry for error logging
 if os.getenv("SENTRY_DSN"):
@@ -113,7 +117,9 @@ WSGI_APPLICATION = "{{ cookiecutter.module_name }}.wsgi.application"
 DATABASES = {}
 
 DATABASES["default"] = dj_database_url.parse(
-    os.getenv("DATABASE_URL", "postgis://postgres:postgres@postgres:5432/{{ cookiecutter.module_name }}"),
+    os.getenv(
+        "DATABASE_URL", "postgis://postgres:postgres@postgres:5432/{{ cookiecutter.module_name }}"
+    ),
     conn_max_age=600,
     ssl_require=True if os.getenv("POSTGRES_REQUIRE_SSL") else False,
     engine="django.contrib.gis.db.backends.postgis",
@@ -224,3 +230,14 @@ WAGTAILEMBEDS_RESPONSIVE_HTML = True
 if DEBUG is False:
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
     SECURE_SSL_REDIRECT = True
+
+# Derive allowed origins from configured hosts
+CSRF_TRUSTED_ORIGINS = []
+
+for host in ALLOWED_HOSTS:
+    if host.startswith("."):
+        origin = f"https://*{host}"
+    else:
+        origin = f"https://{host}"
+
+    CSRF_TRUSTED_ORIGINS.append(origin)

@@ -2,7 +2,7 @@
 set -e
 
 # https://github.com/docker-library/postgres/issues/146#issuecomment-872486465
-# If postgres isn't ready yet, wait and try again 
+# If postgres isn't ready yet, wait and try again
 readonly SLEEP_TIME=5
 readonly PG_HOST="{{ cookiecutter.module_name}}-postgres"
 readonly PG_USER="postgres"

@@ -57,7 +57,8 @@ class Command(BaseCommand):
                     {
                         "title": "React Block",
                         "description": RichText(
-                            "<p>This React block can be added, reordered, or removed in the CMS!</p>"
+                            "<p>This React block can be added,"
+                            + " reordered, or removed in the CMS!</p>"
                         ),
                     },
                 ),
@@ -67,7 +68,9 @@ class Command(BaseCommand):
         root.add_child(instance=homepage)
         homepage.save_revision().publish()
 
-        site, _ = Site.objects.get_or_create(hostname="localhost", root_page=homepage)
+        site, _ = Site.objects.get_or_create(
+            hostname="localhost", root_page=homepage, is_default_site=True
+        )
 
         subpage = StaticPage(title="Example Page", show_in_menus=True)
 
@@ -76,7 +79,8 @@ class Command(BaseCommand):
                 (
                     "content",
                     RichText(
-                        "<p>This is an example subpage. It, too, will one day contain compelling content.</p>"
+                        "<p>This is an example subpage. "
+                        "It, too, will one day contain compelling content.</p>"
                     ),
                 ),
             ]
@@ -98,7 +102,8 @@ class Command(BaseCommand):
                 (
                     "content",
                     RichText(
-                        "<p>You can customize content based on the model instance by editing the page template.</p>"
+                        "<p>You can customize content based on the model instance"
+                        + " by editing the page template.</p>"
                     ),
                 ),
             ]

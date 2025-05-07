@@ -6,13 +6,14 @@ from wagtail.admin import urls as wagtailadmin_urls
 from wagtail import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
-from {{ cookiecutter.module_name }} import views
+from {{cookiecutter.module_name}} import views
 
 
 urlpatterns = [
     path("django-admin/", admin.site.urls),
     path("admin/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
+    path('robots.txt/', views.robots_txt),
 ]
 
 urlpatterns = urlpatterns + [
@@ -25,8 +26,8 @@ urlpatterns = urlpatterns + [
     #    path("pages/", include(wagtail_urls)),
 ]
 
-handler404 = '{{cookiecutter.module_name}}.views.page_not_found'
-handler500 = '{{cookiecutter.module_name}}.views.server_error'
+handler404 = "{{cookiecutter.module_name}}.views.page_not_found"
+handler500 = "{{cookiecutter.module_name}}.views.server_error"
 
 
 if settings.DEBUG:
