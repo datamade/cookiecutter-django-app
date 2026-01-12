@@ -7,7 +7,7 @@
 docker build github.com/datamade/cookiecutter-django-app#main -t cookiecutter:latest
 
 # Generate a new project
-docker run -it \
+docker run --rm -it \
 	--mount type=bind,source=$(pwd),target=/cookiecutter \
 	cookiecutter gh:datamade/cookiecutter-django-app
 ```
@@ -17,7 +17,7 @@ docker run -it \
 docker build cookiecutter-django-app -t cookiecutter:latest
 
 # Generate a new project
-docker run -it \
+docker run --rm -it \
 	--mount type=bind,source=$(pwd),target=/cookiecutter \
 	cookiecutter cookiecutter-django-app
 ```
