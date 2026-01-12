@@ -5,7 +5,7 @@ import wagtail
 
 class Migration(migrations.Migration):
     dependencies = [
-        ("wagtailcore", "0040_page_draft_title"),
+        ("wagtailcore", "0095_groupsitepermission"),
     ]
 
     operations = [

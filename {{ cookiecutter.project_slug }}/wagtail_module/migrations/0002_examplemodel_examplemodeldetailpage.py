@@ -8,7 +8,6 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
     dependencies = [
         ("{{ cookiecutter.module_name }}", "0001_initial"),
-        ("wagtailcore", "0094_alter_page_locale"),
     ]
 
     operations = [
@@ -17,7 +16,7 @@ class Migration(migrations.Migration):
             fields=[
                 (
                     "id",
-                    models.AutoField(
+                    models.BigAutoField(
                         auto_created=True,
                         primary_key=True,
                         serialize=False,
