@@ -1,13 +1,27 @@
 ## Usage
 
+### Option 1: From remote image (recommended)
+Run this in whichever parent directory you'd like your project to live in.
 ```bash
-# Build cookiecutter container (Only need to do once)
+# Build cookiecutter container to make sure it's up to date
 docker build github.com/datamade/cookiecutter-django-app#main -t cookiecutter:latest
 
 # Generate a new project
-docker run -it \
+docker run --rm -it \
 	--mount type=bind,source=$(pwd),target=/cookiecutter \
 	cookiecutter gh:datamade/cookiecutter-django-app
+```
+
+### Option 2: From local files
+Run this from the parent directory of this repo. Project will be built here.
+```bash
+# Build cookiecutter container to make sure it's up to date
+docker build cookiecutter-django-app -t cookiecutter:latest
+
+# Generate a new project
+docker run --rm -it \
+	--mount type=bind,source=$(pwd),target=/cookiecutter \
+	cookiecutter cookiecutter-django-app
 ```
 
 ### Notes

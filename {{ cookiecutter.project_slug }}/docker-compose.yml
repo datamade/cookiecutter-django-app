@@ -53,7 +53,7 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: {{ cookiecutter.module_name }}
     volumes:
-      - {{ cookiecutter.module_name }}-db-data:/var/lib/postgresql/data
+      - {{ cookiecutter.module_name }}-db-data:/var/lib/postgresql
     ports:
       - 32001:5432
 

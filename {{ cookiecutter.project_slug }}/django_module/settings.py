@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.postgres",
     {% if cookiecutter.install_wagtail %}"wagtail.contrib.forms",
     "wagtail.contrib.redirects",
     "wagtail.contrib.simple_translation",
@@ -116,6 +117,7 @@ WSGI_APPLICATION = "{{ cookiecutter.module_name }}.wsgi.application"
 
 DATABASES = {}
 
+{% if cookiecutter.install_postgis %}
 DATABASES["default"] = dj_database_url.parse(
     os.getenv(
         "DATABASE_URL", "postgis://postgres:postgres@postgres:5432/{{ cookiecutter.module_name }}"
@@ -124,6 +126,16 @@ DATABASES["default"] = dj_database_url.parse(
     ssl_require=True if os.getenv("POSTGRES_REQUIRE_SSL") else False,
     engine="django.contrib.gis.db.backends.postgis",
 )
+{% else %}
+DATABASES["default"] = dj_database_url.parse(
+    os.getenv(
+        "DATABASE_URL", "postgres://postgres:postgres@postgres:5432/{{ cookiecutter.module_name }}"
+    ),
+    conn_max_age=600,
+    ssl_require=True if os.getenv("POSTGRES_REQUIRE_SSL") else False,
+    engine="django.db.backends.postgresql",
+)
+{% endif %}
 
 # Caching
 # https://docs.djangoproject.com/en/stable/topics/cache/
