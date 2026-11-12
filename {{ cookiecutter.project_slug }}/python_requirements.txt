@@ -1,5 +1,5 @@
 dj-database-url
-psycopg2-binary
+psycopg
 django-webpack-loader
 django-storages[s3]
 whitenoise
