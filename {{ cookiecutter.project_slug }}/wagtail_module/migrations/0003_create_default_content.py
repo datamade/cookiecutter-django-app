@@ -15,7 +15,7 @@ def destroy_content(*args, **kwargs):
 class Migration(migrations.Migration):
     dependencies = [
         ("{{ cookiecutter.module_name }}", "0002_examplemodel_examplemodeldetailpage"),
-        ("wagtailsearch", "0006_customise_indexentry"),
+        ("wagtailsearch", "0010_add_text_fields"),
         ("wagtailredirects", "0001_initial"),
         ("wagtailforms", "0001_initial"),
     ]
