@@ -5,4 +5,5 @@ django-storages[s3]
 whitenoise
 sentry-sdk
 pytest
+pytest-django
 gunicorn
