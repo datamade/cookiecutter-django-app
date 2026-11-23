@@ -199,6 +199,9 @@ WEBPACK_LOADER = {
         "STATS_FILE": os.path.join(BASE_DIR, "webpack-stats.json"),
         "POLL_INTERVAL": not DEBUG,
         "IGNORE": [r".+\.hot-update.js", r".+\.map"],
+         "LOADER_CLASS": os.getenv(
+            "DJANGO_WEBPACK_LOADER", "webpack_loader.loader.WebpackLoader"
+        ),
     }
 }
 
